@@ -58,7 +58,7 @@
 
     <section class="video-band">
       <div class="wrap video-grid">
-        <div><div class="section-tag light">02 — ASSISTA E COMPARTILHE</div><h2>Conheça o Kauê<br>e sua caminhada.</h2><p>O vídeo original da campanha poderá ser incorporado aqui. Assista, conheça a história e envie para pessoas que possam ajudar.</p></div>
+        <div><div class="section-tag light">02 — ASSISTA E COMPARTILHE</div><h2>Conheça o Kauê<br>e sua caminhada.</h2><p>Assista, conheça a história e envie para pessoas que possam ajudar.</p></div>
         <div class="video-frame" id="videoFrame"><div class="play-icon">▶</div><strong>Vídeo da campanha</strong><small>Adicione o arquivo em assets/video-kaue.mp4</small></div>
       </div>
     </section>
@@ -76,8 +76,14 @@
 
     <section class="donate-section" id="doar">
       <div class="wrap donate-grid">
-        <div><div class="section-tag light">04 — SUA AJUDA</div><h2>Você pode fazer<br>a diferença hoje.</h2><p>Escolha o valor que puder. Não existe contribuição pequena quando ela vem do coração.</p><div class="amounts"><button data-amount="20">R$ 20</button><button data-amount="50">R$ 50</button><button data-amount="100">R$ 100</button><button data-amount="200">R$ 200</button></div><label class="custom-label" for="customAmount">Outro valor</label><div class="custom-amount"><span>R$</span><input id="customAmount" type="number" min="1" placeholder="Digite o valor"></div><button class="button button-white" id="donateButton">Doar via PIX <span>→</span></button><p class="small-note">A chave PIX oficial será inserida após sua confirmação.</p></div>
-        <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Quando a nova chave for cadastrada, ela aparecerá aqui para copiar. Confira sempre o nome do favorecido no aplicativo do seu banco antes de confirmar.</p><div class="pix-key"><small>CHAVE PIX</small><strong id="pixDisplay">Aguardando nova chave PIX</strong><button id="copyPix" disabled>Copiar chave</button></div><div class="pix-footer">Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
+        <div><div class="section-tag light">04 — SUA AJUDA</div><h2>Você pode fazer<br>a diferença hoje.</h2><p>Escolha o valor que puder. Não existe contribuição pequena quando ela vem do coração.</p><div class="amounts"><button data-amount="20">R$ 20</button><button data-amount="50">R$ 50</button><button data-amount="100">R$ 100</button><button data-amount="200">R$ 200</button></div><label class="custom-label" for="customAmount">Outro valor</label><div class="custom-amount"><span>R$</span><input id="customAmount" type="number" min="3" step="0.01" inputmode="decimal" placeholder="Mínimo R$ 3"></div>
+          <form class="donor-form" id="donorForm" novalidate>
+            <label class="custom-label" for="donorCpf">CPF</label><input class="donor-input" id="donorCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
+            <p class="form-error" id="formError" role="alert"></p>
+            <button class="button button-white" id="donateButton" type="submit">Gerar PIX <span>→</span></button>
+          </form>
+          <p class="small-note">O CPF é exigido pelo Banco Central para gerar a cobrança PIX. Seus dados não ficam salvos neste site.</p></div>
+        <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Ao clicar em Gerar PIX, criamos um QR Code exclusivo no valor que você escolheu.</p><ol class="pix-steps"><li>Escolha o valor e informe seu CPF.</li><li>Leia o QR Code ou use o PIX copia e cola no app do seu banco.</li><li>Pronto! A confirmação aparece aqui na página.</li></ol><div class="pix-footer">Pagamento processado pela MasterFy. Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
       </div>
     </section>
 
@@ -89,7 +95,12 @@
   </main>
   <footer><div class="wrap footer-inner"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">♡</span><span>Histórias Únicas</span></a><span>Uma campanha de solidariedade feita com carinho.</span><a href="#inicio">Voltar ao topo ↑</a></div><div class="wrap footer-bottom">© <span id="year"></span> Histórias Únicas · Ajude o Kauê. Criado em outubro de 2026.</div></footer>
 
-  <div class="modal" id="pixModal" aria-hidden="true"><div class="modal-box"><button class="modal-close" id="closeModal" aria-label="Fechar">×</button><div class="modal-heart">♡</div><h3>Obrigado por querer ajudar!</h3><p>A nova chave PIX ainda será adicionada. Volte em breve ou entre em contato com a família para confirmar os dados oficiais.</p><button class="button" id="modalOk">Entendi</button></div></div>
+  <div class="modal" id="pixModal" aria-hidden="true"><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="pixTitle"><button class="modal-close" id="closeModal" aria-label="Fechar">×</button>
+    <div class="pix-state" data-state="loading"><div class="spinner" aria-hidden="true"></div><h3>Gerando seu PIX…</h3></div>
+    <div class="pix-state" data-state="pending"><h3 id="pixTitle">Doação de <span id="pixAmount"></span></h3><p>Leia o QR Code no app do seu banco ou copie o código abaixo.</p><img class="pix-qr" id="pixQr" alt="QR Code PIX"><div class="pix-code"><code id="pixCode"></code><button class="button" id="copyPix" type="button">Copiar código PIX</button></div><p class="pix-waiting"><span class="spinner spinner-small" aria-hidden="true"></span> Aguardando pagamento…</p></div>
+    <div class="pix-state" data-state="paid"><div class="modal-heart">♥</div><h3>Pagamento confirmado!</h3><p>Muito obrigado por ajudar o Kauê. Sua doação faz toda a diferença. 💚</p><button class="button modal-ok" type="button">Fechar</button></div>
+    <div class="pix-state" data-state="error"><div class="modal-heart">♡</div><h3>Ops, algo deu errado</h3><p id="pixErrorMsg"></p><button class="button modal-ok" type="button">Fechar</button></div>
+  </div></div>
   <div class="lightbox" id="lightbox"><button id="lightboxClose" aria-label="Fechar">×</button><img id="lightboxImage" alt="Foto do Kauê"></div>
   <script src="config.js"></script><script src="script.js"></script>
 </body></html>

@@ -30,3 +30,22 @@
   .floating-note{font-size:12px;padding:10px 12px}
   .progress-card{padding:20px 16px}
 }
+
+/* Doação via PIX (MasterFy) */
+.donor-form{max-width:360px}
+.donor-input{display:block;width:100%;background:transparent;border:0;border-bottom:1px solid #789087;color:#fff;font:600 15px "DM Sans";padding:8px 0;margin-bottom:16px;outline:0}
+.donor-input:focus{border-bottom-color:#d18a67}
+.form-error{min-height:18px;margin:0 0 10px!important;font-size:12px!important;color:#f3b39a!important}
+.button:disabled{opacity:.6;cursor:wait;transform:none}
+.pix-steps{margin:20px 0 0;padding-left:18px;font-size:12px;line-height:1.9;color:#4d6158}
+.modal-box{max-height:calc(100vh - 40px);overflow:auto}
+.pix-state[hidden]{display:none}
+.pix-qr{display:block;width:220px;height:220px;margin:6px auto 16px;image-rendering:pixelated}
+.pix-code{background:#e9eee7;padding:12px;text-align:left}
+.pix-code code{display:block;max-height:64px;overflow:auto;font-size:11px;line-height:1.5;word-break:break-all;color:#35554a;margin-bottom:10px;user-select:all}
+.pix-code .button{width:100%}
+.pix-waiting{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0 0!important}
+.spinner{width:42px;height:42px;margin:4px auto 0;border:3px solid #d9e2db;border-top-color:#c77957;border-radius:50%;animation:spin .9s linear infinite}
+.spinner-small{width:14px;height:14px;margin:0;border-width:2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:460px){.modal-box{padding:34px 22px}.pix-qr{width:200px;height:200px}.donor-form{max-width:none}}
