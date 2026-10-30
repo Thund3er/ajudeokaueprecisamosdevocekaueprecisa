@@ -49,3 +49,11 @@
 .spinner-small{width:14px;height:14px;margin:0;border-width:2px}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:460px){.modal-box{padding:34px 22px}.pix-qr{width:200px;height:200px}.donor-form{max-width:none}}
+
+/* Chamadas para o vídeo */
+.hero-actions{flex-wrap:wrap}
+.watch-link{display:inline-flex;align-items:center;gap:9px}
+.watch-icon{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#c77957;color:#fff;font-size:10px;padding-left:2px;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #c7795766}70%{box-shadow:0 0 0 10px #c7795700}100%{box-shadow:0 0 0 0 #c7795700}}
+.video-band .button{margin-top:10px}
+@media(prefers-reduced-motion:reduce){.watch-icon{animation:none}}

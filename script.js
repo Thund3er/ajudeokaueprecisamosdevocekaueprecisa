@@ -1,11 +1,11 @@
 const cfg=window.CAMPAIGN_CONFIG||{};
-const money=v=>Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const money=v=>{const n=Math.round(Number(v||0)*100)/100,d=Number.isInteger(n)?0:2;return n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",minimumFractionDigits:d,maximumFractionDigits:d})};
 document.getElementById("year").textContent=new Date().getFullYear();
 document.getElementById("goalLabel").textContent=money(cfg.goal||115000);
-document.getElementById("raisedLabel").textContent=money(cfg.raised||0);
-const pct=Math.min(100,Math.max(0,(Number(cfg.raised||0)/Number(cfg.goal||115000))*100));
-document.getElementById("progressFill").style.width=pct+"%";
-document.getElementById("percentLabel").textContent=Math.round(pct)+"% alcançado";
+function renderProgress(raised){const goal=Number(cfg.goal||115000),pct=Math.min(100,Math.max(0,raised/goal*100));document.getElementById("raisedLabel").textContent=money(raised);document.getElementById("progressFill").style.width=pct+"%";document.getElementById("percentLabel").textContent=pct.toLocaleString("pt-BR",{maximumFractionDigits:1})+"% alcançado"}
+// Total = valor recebido fora do site (config.js) + PIX confirmados pelo site.
+function updateRaised(){fetch("/api/arrecadado").then(r=>r.ok?r.json():null).then(d=>{if(d)renderProgress(Number(cfg.raised||0)+Number(d.total||0))}).catch(()=>{})}
+renderProgress(Number(cfg.raised||0));updateRaised();
 let selected=0;document.querySelectorAll("[data-amount]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-amount]").forEach(x=>x.classList.remove("active"));b.classList.add("active");selected=Number(b.dataset.amount);document.getElementById("customAmount").value=selected}));
 document.getElementById("customAmount").addEventListener("input",()=>{selected=Number(document.getElementById("customAmount").value)||0;document.querySelectorAll("[data-amount]").forEach(x=>x.classList.toggle("active",Number(x.dataset.amount)===selected))});
 const modal=document.getElementById("pixModal"),copy=document.getElementById("copyPix"),form=document.getElementById("donorForm"),formError=document.getElementById("formError"),cpfInput=document.getElementById("donorCpf");
@@ -17,7 +17,7 @@ document.getElementById("closeModal").onclick=closeModal;modal.querySelectorAll(
 copy.addEventListener("click",async()=>{if(!pixCode)return;try{await navigator.clipboard.writeText(pixCode);copy.textContent="Código copiado!"}catch(e){copy.textContent="Selecione e copie o código acima"}setTimeout(()=>copy.textContent="Copiar código PIX",2200)});
 cpfInput.addEventListener("input",()=>{const d=cpfInput.value.replace(/\D/g,"").slice(0,11);cpfInput.value=d.replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})\.(\d{3})(\d)/,"$1.$2.$3").replace(/(\d{3})-?(\d{1,2})$/,"$1-$2")});
 // A MasterFy avisa o pagamento por webhook; aqui só consultamos o status gravado no nosso servidor.
-function checkStatus(id){if(Date.now()>pixDeadline||!modal.classList.contains("open"))return;fetch("/api/pix/"+encodeURIComponent(id)).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.status==="PAID")showState("paid");else pixTimer=setTimeout(()=>checkStatus(id),5000)}).catch(()=>{pixTimer=setTimeout(()=>checkStatus(id),5000)})}
+function checkStatus(id){if(Date.now()>pixDeadline||!modal.classList.contains("open"))return;fetch("/api/pix/"+encodeURIComponent(id)).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.status==="PAID"){showState("paid");updateRaised()}else pixTimer=setTimeout(()=>checkStatus(id),5000)}).catch(()=>{pixTimer=setTimeout(()=>checkStatus(id),5000)})}
 form.addEventListener("submit",async e=>{e.preventDefault();formError.textContent="";
   const valor=Number(document.getElementById("customAmount").value)||selected,cpf=cpfInput.value;
   if(!(valor>0))return formError.textContent="Escolha ou digite o valor da doação.";
@@ -35,4 +35,4 @@ setImage(document.getElementById("heroPhoto"),cfg.heroImage);setImage(document.g
 const vf=document.getElementById("videoFrame");if(cfg.video){const v=document.createElement("video");v.controls=true;v.preload="metadata";v.src=cfg.video;v.onerror=()=>{};vf.innerHTML="";vf.appendChild(v)}
 const lb=document.getElementById("lightbox"),lbImg=document.getElementById("lightboxImage");
 document.querySelectorAll(".gallery-item").forEach((b,i)=>{const src=b.dataset.image;setImage(b,src);b.addEventListener("click",()=>{const im=new Image();im.onload=()=>{lbImg.src=src;lb.classList.add("open")};im.src=src})});
-document.getElementById("lightboxClose").onclick=()=>lb.classList.remove("open");lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("open")});
+document.getElementById("lightboxClose").onclick=()=>lb.classList.remove("open");lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("open")});document.querySelectorAll("[data-play-video]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();document.getElementById("video").scrollIntoView({behavior:"smooth"});const v=vf.querySelector("video");if(v)v.play().catch(()=>{})}));
