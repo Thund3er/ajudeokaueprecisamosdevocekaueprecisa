@@ -36,7 +36,11 @@
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="Ajude o Kauê - início"><span class="brand-mark">♡</span><span>Histórias Únicas</span></a>
     <nav><a href="#historia">A história</a><a href="#video" data-play-video>Vídeo</a><a href="#fotos">Galeria</a><a href="#transparencia">Transparência</a></nav>
-    <a class="button button-small" href="#doar">Quero ajudar <span>↗</span></a>
+    <a class="button button-small"
+   href="#doar"
+   onclick="fbq('track', 'InitiateCheckout');">
+  Quero ajudar <span>↗</span>
+</a>
   </header>
 
   
@@ -50,7 +54,11 @@
         <div class="eyebrow"><span class="dot"></span> CAMPANHA SOLIDÁRIA</div>
         <h1>Juntos, podemos<br><em>ajudar o Kauê.</em></h1>
         <p class="hero-lead">Cada contribuição, cada compartilhamento e cada gesto de carinho fazem diferença nessa caminhada. Vamos fazer parte dessa corrente do bem?</p>
-        <div class="hero-actions"><a class="button" href="#doar">Fazer minha doação <span>→</span></a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assista ao vídeo do Kauê</a></div>
+        <div class="hero-actions"><a class="button"
+   href="#doar"
+   onclick="fbq('track', 'InitiateCheckout');">
+  Fazer minha doação <span>→</span>
+</a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assista ao vídeo do Kauê</a></div>
         <div class="trust-row"><span>♡ Solidariedade</span><span>⌁ Apoio coletivo</span><span>✳ Compartilhe</span></div>
       </div>
       <div class="hero-visual">
@@ -101,7 +109,14 @@
           <form class="donor-form" id="donorForm" novalidate>
             <label class="custom-label" for="donorCpf">CPF</label><input class="donor-input" id="donorCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
             <p class="form-error" id="formError" role="alert"></p>
-            <button class="button button-white" id="donateButton" type="submit">Gerar PIX <span>→</span></button>
+            <button
+  class="button button-white"
+  id="donateButton"
+  type="submit"
+  onclick="fbq('track', 'InitiateCheckout');"
+>
+  Gerar PIX <span>→</span>
+</button>
           </form>
           <p class="small-note">O CPF é exigido pelo Banco Central para gerar a cobrança PIX. Seus dados não ficam salvos neste site.</p></div>
         <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Ao clicar em Gerar PIX, criamos um QR Code exclusivo no valor que você escolheu.</p><ol class="pix-steps"><li>Escolha o valor e informe seu CPF.</li><li>Leia o QR Code ou use o PIX copia e cola no app do seu banco.</li><li>Pronto! A confirmação aparece aqui na página.</li></ol><div class="pix-footer">Pagamento processado pela MasterFy. Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
