@@ -5,6 +5,24 @@
   <meta name="theme-color" content="#123c35">
   <meta name="description" content="Ajude o Kauê. Uma campanha de solidariedade para apoiar sua caminhada.">
   <title>Ajude o Kauê | Juntos por essa causa</title>
+
+  <!-- META PIXEL -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '1688033635642005');
+  fbq('track', 'PageView');
+  </script>
+  <!-- FIM META PIXEL -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +34,7 @@
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="Ajude o Kauê - início"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="40"><span>Histórias Únicas</span></a>
     <nav><a href="#historia">A história</a><a href="#video" data-play-video>Vídeo</a><a href="#fotos">Fotos</a><a href="#transparencia">Transparência</a></nav>
-    <a class="button button-small" href="#doar">Doar via PIX <span>→</span></a>
+    <a class="button button-small" href="#doar" onclick="fbq('track', 'InitiateCheckout');">Doar via PIX <span>→</span></a>
   </header>
 
 
@@ -31,7 +49,7 @@
           <div class="progress-track"><span data-fill></span></div>
           <div class="hp-bottom"><span data-percent>0% alcançado</span><span>Atualizado a cada PIX confirmado</span></div>
         </div>
-        <div class="hero-actions"><a class="button button-big" href="#doar"><span class="pix-badge">PIX</span> Quero doar agora <span>→</span></a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assistir ao vídeo com som</a></div>
+        <div class="hero-actions"><a class="button button-big" href="#doar" onclick="fbq('track', 'InitiateCheckout');"><span class="pix-badge">PIX</span> Quero doar agora <span>→</span></a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assistir ao vídeo com som</a></div>
         <div class="quick-amounts"><span>Doe rápido:</span><a href="#doar" data-preset="20">R$ 20</a><a href="#doar" data-preset="50">R$ 50</a><a href="#doar" data-preset="100">R$ 100</a><a href="#doar">Outro valor</a></div>
       </div>
       <div class="hero-visual" id="video">
@@ -60,7 +78,7 @@
           <form class="donor-form" id="donorForm" novalidate>
             <label class="custom-label" for="donorCpf">CPF</label><input class="donor-input" id="donorCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
             <p class="form-error" id="formError" role="alert"></p>
-            <button class="button button-pix" id="donateButton" type="submit"><span class="pix-badge">PIX</span> <span id="donateLabel">Gerar PIX de R$ 50</span> <span>→</span></button>
+            <button class="button button-pix" id="donateButton" type="submit" onclick="fbq('track', 'InitiateCheckout');"><span class="pix-badge">PIX</span> <span id="donateLabel">Gerar PIX de R$ 50</span> <span>→</span></button>
           </form>
           <p class="small-note">O CPF é exigido pelo Banco Central para gerar a cobrança PIX. Seus dados não ficam salvos neste site.</p></div>
         <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Ao clicar em Gerar PIX, criamos um QR Code exclusivo no valor que você escolheu.</p><ol class="pix-steps"><li>Escolha o valor e informe seu CPF.</li><li>Leia o QR Code ou use o PIX copia e cola no app do seu banco.</li><li>Pronto! A confirmação aparece aqui na página.</li></ol><div class="pix-footer">Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
