@@ -57,3 +57,141 @@
 @keyframes pulse{0%{box-shadow:0 0 0 0 #c7795766}70%{box-shadow:0 0 0 10px #c7795700}100%{box-shadow:0 0 0 0 #c7795700}}
 .video-band .button{margin-top:10px}
 @media(prefers-reduced-motion:reduce){.watch-icon{animation:none}}
+
+/* Destaque para a doação via PIX */
+.topline{display:block}
+.topline strong{color:#f3c3a8;margin-left:6px;text-decoration:underline;text-underline-offset:3px}
+.topline:hover strong{color:#fff}
+.pix-badge{background:#fff;color:#b8653f;font:800 10px Manrope,sans-serif;letter-spacing:.06em;padding:3px 6px;border-radius:3px}
+.button-big{padding:19px 26px;font-size:15px;gap:12px;box-shadow:0 10px 24px #c7795755}
+.hero h1{margin:18px 0}
+.hero-progress{background:#fff;border:1px solid #e9e9e1;padding:18px 20px;margin:24px 0 26px;max-width:470px;box-shadow:0 10px 30px #193c3012}
+.hp-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.hp-top strong{font:800 28px Manrope,sans-serif;color:#c77957;letter-spacing:-.03em}
+.hp-top span{font-size:12px;color:#6e7a72}
+.hp-top b{color:#244c3e}
+.hero-progress .progress-track{margin:12px 0 8px}
+.hp-bottom{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:11px;color:#87928b}
+.hp-bottom span:first-child{font-weight:700;color:#244c3e}
+.quick-amounts{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:12px;color:#87928b}
+.quick-amounts a{border:1px solid #dcc4b6;color:#a95e40;padding:8px 13px;border-radius:20px;font-weight:700;transition:.2s}
+.quick-amounts a:hover{background:#c77957;border-color:#c77957;color:#fff}
+.promo-banner{display:block;margin:0 auto 80px}
+.promo-banner img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:.2s}
+.promo-banner:hover img{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.14)}
+.video-actions{display:flex;gap:10px;flex-wrap:wrap}
+.amounts button{font:700 14px "DM Sans",sans-serif;padding:13px 18px}
+.button-pix{width:100%;max-width:360px;padding:19px 22px;font-size:15px;gap:10px;box-shadow:0 10px 24px #0000004d}
+.donate-trust{list-style:none;padding:0;margin:14px 0 0;display:flex;gap:6px 16px;flex-wrap:wrap;font-size:11px;color:#c2d0c8}
+.inline-cta{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;background:#f0f1e9;padding:22px 26px;margin-top:30px}
+.inline-cta p{margin:0;font-size:15px;color:#40564c}
+.supporters-cta{text-align:center}
+.supporters-cta small{display:block;margin-top:12px;font:700 9px "DM Sans",sans-serif;letter-spacing:.17em;color:#829087}
+.donate-bar{position:fixed;left:50%;bottom:16px;z-index:15;display:flex;align-items:center;justify-content:space-between;gap:18px;width:min(560px,calc(100% - 24px));background:#183e36;color:#fff;padding:10px 10px 10px 20px;border-radius:6px;box-shadow:0 14px 40px #071e1955;transform:translate(-50%,160%);transition:transform .3s}
+.donate-bar.show{transform:translate(-50%,0)}
+.db-info strong{display:block;font:800 17px Manrope,sans-serif}
+.db-info span{font-size:11px;color:#c2d0c8}
+.donate-bar .button{padding:13px 18px;gap:10px}
+@media(max-width:800px){.supporters-inner{flex-direction:column;align-items:flex-start}.supporters-cta{text-align:left}footer{padding-bottom:90px}}
+@media(max-width:460px){.topline{font-size:11px}.button-big,.inline-cta .button{width:100%}.hp-top strong{font-size:24px}.hero-progress{padding:16px}.donate-bar{bottom:0;width:100%;border-radius:0;padding:10px 12px 10px 16px}.amounts{grid-template-columns:1fr 1fr 1fr}.promo-banner{margin-bottom:60px}}
+@media(prefers-reduced-motion:reduce){.donate-bar{transition:none}}
+.hero{padding-top:44px;padding-bottom:70px}
+@media(max-width:800px){.hero{padding-top:36px}}
+
+/* Vídeo no topo, tocando sem som ao abrir o site */
+.hero-video{position:relative;height:500px;border-radius:28px 28px 4px 4px;overflow:hidden;background:#0e2c27;box-shadow:0 20px 50px #193c3033}
+.hero-video video{display:block;width:100%;height:100%;object-fit:cover}
+.hero-video.with-sound video{object-fit:contain}
+.sound-btn{position:absolute;top:18px;right:36px;display:inline-flex;align-items:center;gap:9px;background:#0b231ecc;color:#fff;border:0;border-radius:30px;padding:7px 16px 7px 7px;font:700 12px "DM Sans",sans-serif;cursor:pointer;backdrop-filter:blur(4px)}
+.sound-btn:hover{background:#0b231e}
+.sound-btn[hidden]{display:none}
+.sound-btn .watch-icon{font-size:13px;padding:0}
+@media(max-width:800px){.hero-visual{order:-1;padding:0}.hero-video{height:auto;aspect-ratio:16/9;border-radius:6px}.floating-note,.visual-caption{display:none}.sound-btn{top:auto;bottom:12px;right:50%;transform:translateX(50%)}}
+
+/* Celular: PIX em destaque logo depois do vídeo */
+.tl-short{display:none}
+@media(max-width:800px){
+  main{display:flex;flex-direction:column}
+  .hero{order:0}#doar{order:1}#historia{order:2}.promo-banner{order:3}#fotos{order:4}#transparencia{order:5}.supporters{order:6}
+  .promo-banner{margin-top:60px}
+  .donate-section{padding:56px 0 60px}
+  .pix-card h3,.pix-card>p{display:none}
+  .pix-card .pix-steps{margin-top:14px}
+}
+@media(max-width:460px){
+  .tl-long{display:none}.tl-short{display:inline}
+  .hero h1{font-size:40px;margin:14px 0}
+  .hero-lead{margin:0}
+  .hero-progress{margin:18px 0 18px}
+  .quick-amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+  .quick-amounts span{grid-column:1/-1}
+  .quick-amounts a{text-align:center;padding:10px 4px;font-size:12px}
+  .watch-link{margin-top:4px}
+  .donate-section h2{font-size:38px;margin:14px 0 10px}
+  .custom-amount{width:100%}
+  .button-pix{max-width:none}
+  .site-header .button-small{padding:10px 12px}
+}
+
+/* Botão de som pequeno, no canto, sem cobrir a legenda */
+.sound-btn{top:12px;right:30px;padding:6px 12px;font:700 11px "DM Sans",sans-serif;gap:6px;border-radius:20px}
+
+/* Janela do PIX: frases de incentivo e copia e cola em destaque */
+.modal-box{max-width:420px}
+.pix-kicker{font:700 10px "DM Sans",sans-serif!important;letter-spacing:.17em;color:#a56c50!important;margin:0 0 6px!important}
+.pix-state[data-state=pending] h3,.pix-state[data-state=paid] h3{font-size:22px;line-height:1.2;margin:0 0 10px}
+.pix-urge{margin:0 0 16px!important;color:#53675d!important}
+.pix-urge strong{color:#c77957}
+.pix-pay{display:flex;flex-direction:column;gap:12px}
+.pix-qr-wrap .pix-qr{margin:0 auto 6px}
+.pix-qr-wrap small{display:block;font-size:11px;color:#87928b}
+.button-copy{width:100%;padding:16px;font-size:14px}
+.copy-hint{font-size:12px!important;line-height:1.5!important;color:#53675d!important;margin:8px 0 10px!important}
+.copy-hint.done{color:#1d6b4f!important;font-weight:600}
+.pix-waiting{font-size:12px!important;margin:14px 0 0!important}
+.pix-heart{font-size:12px!important;color:#a56c50!important;margin:10px 0 0!important}
+.thanks-photo{display:block;width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 8px 24px #193c3026;margin:0 auto 14px}
+.thanks-text{font-size:14px!important;color:#40564c!important;margin:0 0 12px!important}
+.thanks-ask{font-size:12px!important;margin:0 0 14px!important}
+.button-whats{width:100%;background:#25d366;color:#fff}
+.button-whats:hover{background:#1ebe5a}
+.thanks-close{display:block;margin:12px auto 0;background:none;border:0;color:#87928b;cursor:pointer;font-size:12px}
+
+@media(max-width:800px){
+  .sound-btn{top:10px;right:10px;bottom:auto;transform:none}
+  .pix-code{order:-1}
+  .pix-qr-wrap .pix-qr{width:150px;height:150px}
+}
+
+/* Quem já ajudou */
+.donors{padding:70px 0 20px}
+.donors-head h2{font:800 clamp(28px,3.4vw,40px)/1.15 Manrope,sans-serif;letter-spacing:-.05em;margin:12px 0 8px;color:#183b34}
+.donors-head p{font-size:14px;color:#718077;margin:0 0 24px}
+.donor-list{list-style:none;padding:0;margin:0 0 26px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.donor-list li{display:grid;grid-template-columns:40px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;background:#fff;border:1px solid #e9e9e1;padding:12px 14px}
+.donor-avatar{grid-row:1/3;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#d9e9dc;color:#245b4b;font:800 16px Manrope,sans-serif}
+.donor-name{font:700 14px Manrope,sans-serif;color:#183b34}
+.donor-amount{font-size:12px;color:#c77957;font-weight:700}
+.donors[hidden]{display:none}
+@media(max-width:800px){#apoiadores{order:1}.donor-list{grid-template-columns:1fr 1fr}.donors{padding:50px 0 10px}}
+@media(max-width:460px){.donor-list{grid-template-columns:1fr}.donors .button{width:100%}}
+
+/* Logo Histórias Únicas */
+.brand-logo{display:block;width:40px;height:40px;border-radius:50%;background:#fff;object-fit:contain;padding:3px;box-shadow:0 0 0 1px #e3e6dd}
+.footer-brand .brand-logo{box-shadow:none}
+@media(max-width:460px){.brand-logo{width:36px;height:36px}}
+footer{padding-bottom:100px}
+.floating-note{bottom:-22px}
+.hero-visual{padding-bottom:40px}
+
+/* Vídeo na janela do QR Code */
+.pix-video{display:block;height:240px;aspect-ratio:9/16;margin:0 auto 14px;border-radius:10px;background:#0e2c27;object-fit:cover;box-shadow:0 10px 26px #193c3033}
+@media(max-width:460px){.pix-video{height:210px}}
+.pix-video-wrap{position:relative;width:fit-content;margin:0 auto 14px}
+.pix-video-wrap[hidden]{display:none}
+.pix-video-wrap .pix-video{margin:0}
+.pix-sound{top:auto;bottom:10px;right:50%;transform:translateX(50%);white-space:nowrap}
+@media(max-width:800px){.pix-sound{top:auto;bottom:10px;right:50%;transform:translateX(50%)}}
+/* Vídeo horizontal (o mesmo do topo) na janela do QR Code */
+.pix-video-wrap{width:100%}
+.pix-video-wrap .pix-video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:8px}

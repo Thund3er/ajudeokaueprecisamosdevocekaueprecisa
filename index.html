@@ -8,59 +8,69 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="topline">Uma corrente de carinho pode transformar uma história. 💚</div>
   <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Ajude o Kauê - início"><span class="brand-mark">♡</span><span>Histórias Únicas</span></a>
-    <nav><a href="#historia">A história</a><a href="#video" data-play-video>Vídeo</a><a href="#fotos">Galeria</a><a href="#transparencia">Transparência</a></nav>
-    <a class="button button-small" href="#doar">Quero ajudar <span>↗</span></a>
+    <a class="brand" href="#inicio" aria-label="Ajude o Kauê - início"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="40"><span>Histórias Únicas</span></a>
+    <nav><a href="#historia">A história</a><a href="#video" data-play-video>Vídeo</a><a href="#fotos">Fotos</a><a href="#transparencia">Transparência</a></nav>
+    <a class="button button-small" href="#doar">Doar via PIX <span>→</span></a>
   </header>
 
-  
-  <div class="promo-banner wrap" style="margin:20px auto;text-align:center;">
-    <img src="assets/bannerfinal.jpg" alt="Histórias Únicas - Toda pessoa tem uma história" style="max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.1);">
-  </div>
 
   <main id="inicio">
-    <section class="hero wrap">
+    <section class="hero wrap" id="topo">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span> CAMPANHA SOLIDÁRIA</div>
+        <div class="eyebrow"><span class="dot"></span> CAMPANHA SOLIDÁRIA · DOAÇÃO VIA PIX</div>
         <h1>Juntos, podemos<br><em>ajudar o Kauê.</em></h1>
-        <p class="hero-lead">Cada contribuição, cada compartilhamento e cada gesto de carinho fazem diferença nessa caminhada. Vamos fazer parte dessa corrente do bem?</p>
-        <div class="hero-actions"><a class="button" href="#doar">Fazer minha doação <span>→</span></a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assista ao vídeo do Kauê</a></div>
-        <div class="trust-row"><span>♡ Solidariedade</span><span>⌁ Apoio coletivo</span><span>✳ Compartilhe</span></div>
+        <p class="hero-lead">Cada contribuição faz diferença nessa caminhada. Doe qualquer valor a partir de R$ 3 via PIX e faça parte dessa corrente do bem.</p>
+        <div class="hero-progress">
+          <div class="hp-top"><strong data-raised>R$ 0</strong><span>arrecadados de <b id="goalLabel">R$ 115.000</b></span></div>
+          <div class="progress-track"><span data-fill></span></div>
+          <div class="hp-bottom"><span data-percent>0% alcançado</span><span>Atualizado a cada PIX confirmado</span></div>
+        </div>
+        <div class="hero-actions"><a class="button button-big" href="#doar"><span class="pix-badge">PIX</span> Quero doar agora <span>→</span></a><a class="text-link watch-link" href="#video" data-play-video><span class="watch-icon">▶</span> Assistir ao vídeo com som</a></div>
+        <div class="quick-amounts"><span>Doe rápido:</span><a href="#doar" data-preset="20">R$ 20</a><a href="#doar" data-preset="50">R$ 50</a><a href="#doar" data-preset="100">R$ 100</a><a href="#doar">Outro valor</a></div>
       </div>
-      <div class="hero-visual">
-        <div class="photo-main photo-placeholder" id="heroPhoto"><div class="photo-note">Adicione aqui a foto principal do Kauê<br><small>assets/kaue-capa.jpg</small></div></div>
+      <div class="hero-visual" id="video">
+        <div class="hero-video" id="videoFrame"></div>
+        <button class="sound-btn" id="soundBtn" type="button" data-play-video aria-label="Ativar o som do vídeo">🔊 Ativar som</button>
         <div class="floating-note"><span class="heart">♥</span><div><strong>Uma ajuda muda tudo</strong><small>Faça parte dessa história</small></div></div>
         <div class="visual-caption">#JUNTOSPELOKAUÊ</div>
       </div>
     </section>
 
-    <section class="progress-section">
-      <div class="wrap progress-card">
-        <div class="progress-top"><div><span class="eyebrow">META DA CAMPANHA</span><h2>Uma meta. Muitos corações.</h2></div><div class="goal"><strong id="goalLabel">R$ 115.000</strong><small>Meta de arrecadação</small></div></div>
-        <div class="progress-track"><span id="progressFill"></span></div>
-        <div class="progress-bottom"><span><strong id="raisedLabel">R$ 0</strong> arrecadados</span><span id="percentLabel">0% alcançado</span></div>
-        <p class="progress-disclaimer">O valor é atualizado automaticamente a cada doação via PIX confirmada.</p>
-      </div>
-    </section>
 
     <section class="story wrap section" id="historia">
       <div class="section-tag">01 — A HISTÓRIA</div>
       <div class="story-grid">
-        <div><h2>Por trás de cada pedido de ajuda, existe uma história.</h2><p class="large-copy">O Kauê e sua família estão passando por um momento que exige união, cuidado e apoio. Esta página reúne informações da campanha para que você possa conhecer a história e contribuir da maneira que puder.</p><p>Todo gesto importa. Se não for possível contribuir financeiramente, compartilhar esta página também ajuda a mensagem a chegar mais longe.</p><a class="button" href="#doar">Quero fazer parte <span>→</span></a></div>
+        <div><h2>Por trás de cada pedido de ajuda, existe uma história.</h2><p class="large-copy">O Kauê e sua família estão passando por um momento que exige união, cuidado e apoio. Esta página reúne informações da campanha para que você possa conhecer a história e contribuir da maneira que puder.</p><p>Todo gesto importa. Se não for possível contribuir financeiramente, compartilhar esta página também ajuda a mensagem a chegar mais longe.</p><a class="button" href="#doar">Doar via PIX agora <span>→</span></a></div>
         <div class="story-photo photo-placeholder" id="storyPhoto"><div class="photo-note">Foto da família / história<br><small>assets/kaue-historia.jpg</small></div></div>
       </div>
     </section>
 
-    <section class="video-band" id="video">
-      <div class="wrap video-grid">
-        <div><div class="section-tag light">02 — ASSISTA E COMPARTILHE</div><h2>Conheça o Kauê<br>e sua caminhada.</h2><p>Aperte o play e conheça a história do Kauê em pouco mais de 2 minutos. Depois, envie o vídeo para quem puder ajudar. 💚</p><button class="button button-white" type="button" data-play-video>▶ Assistir ao vídeo</button></div>
-        <div class="video-frame" id="videoFrame"><div class="play-icon">▶</div><strong>Vídeo da campanha</strong><small>Adicione o arquivo em assets/video-kaue.mp4</small></div>
+    <a class="promo-banner wrap" href="#doar" aria-label="Doar via PIX"><img src="assets/bannerfinal.jpg" alt="Histórias Únicas - Toda pessoa tem uma história. Com apenas 5 reais você ajuda a transformar a história de alguém."></a>
+
+
+    <section class="donate-section" id="doar">
+      <div class="wrap donate-grid">
+        <div><div class="section-tag light">02 — DOE AGORA</div><h2>Doe agora<br>via PIX.</h2><p>Escolha um valor, informe seu CPF e pague com o app do seu banco. Leva menos de um minuto.</p><div class="amounts"><button data-amount="10">R$ 10</button><button data-amount="20">R$ 20</button><button data-amount="50" class="active">R$ 50</button><button data-amount="100">R$ 100</button><button data-amount="200">R$ 200</button></div><label class="custom-label" for="customAmount">Outro valor</label><div class="custom-amount"><span>R$</span><input id="customAmount" type="number" min="3" step="0.01" inputmode="decimal" placeholder="Mínimo R$ 3" value="50"></div>
+          <form class="donor-form" id="donorForm" novalidate>
+            <label class="custom-label" for="donorCpf">CPF</label><input class="donor-input" id="donorCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
+            <p class="form-error" id="formError" role="alert"></p>
+            <button class="button button-pix" id="donateButton" type="submit"><span class="pix-badge">PIX</span> <span id="donateLabel">Gerar PIX de R$ 50</span> <span>→</span></button>
+          </form>
+          <p class="small-note">O CPF é exigido pelo Banco Central para gerar a cobrança PIX. Seus dados não ficam salvos neste site.</p></div>
+        <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Ao clicar em Gerar PIX, criamos um QR Code exclusivo no valor que você escolheu.</p><ol class="pix-steps"><li>Escolha o valor e informe seu CPF.</li><li>Leia o QR Code ou use o PIX copia e cola no app do seu banco.</li><li>Pronto! A confirmação aparece aqui na página.</li></ol><div class="pix-footer">Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
       </div>
+    </section>
+
+    <section class="donors wrap" id="apoiadores">
+      <div class="donors-head"><div class="section-tag">QUEM JÁ AJUDOU</div><h2>Essas pessoas já doaram 💚</h2><p>Junte-se a elas e ajude o Kauê também.</p></div>
+      <ul class="donor-list" id="donorList"></ul>
+      <a class="button" href="#doar">Quero doar também <span>→</span></a>
     </section>
 
     <section class="gallery wrap section" id="fotos">
@@ -72,33 +82,43 @@
         <button class="gallery-item photo-placeholder" data-image="assets/kaue4.jpeg" aria-label="Ampliar foto 4"></button>
         <button class="gallery-item photo-placeholder" data-image="assets/kaue5.jpeg" aria-label="Ampliar foto 5"></button>
       </div>
+      <div class="inline-cta"><p><strong>Conheceu o Kauê?</strong> Sua ajuda faz diferença agora.</p><a class="button" href="#doar">Doar via PIX <span>→</span></a></div>
     </section>
 
-    <section class="donate-section" id="doar">
-      <div class="wrap donate-grid">
-        <div><div class="section-tag light">04 — SUA AJUDA</div><h2>Você pode fazer<br>a diferença hoje.</h2><p>Escolha o valor que puder. Não existe contribuição pequena quando ela vem do coração.</p><div class="amounts"><button data-amount="20">R$ 20</button><button data-amount="50">R$ 50</button><button data-amount="100">R$ 100</button><button data-amount="200">R$ 200</button></div><label class="custom-label" for="customAmount">Outro valor</label><div class="custom-amount"><span>R$</span><input id="customAmount" type="number" min="3" step="0.01" inputmode="decimal" placeholder="Mínimo R$ 3"></div>
-          <form class="donor-form" id="donorForm" novalidate>
-            <label class="custom-label" for="donorCpf">CPF</label><input class="donor-input" id="donorCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
-            <p class="form-error" id="formError" role="alert"></p>
-            <button class="button button-white" id="donateButton" type="submit">Gerar PIX <span>→</span></button>
-          </form>
-          <p class="small-note">O CPF é exigido pelo Banco Central para gerar a cobrança PIX. Seus dados não ficam salvos neste site.</p></div>
-        <div class="pix-card"><div class="pix-head"><span class="pix-symbol">▦</span><span>DOAÇÃO VIA PIX</span></div><h3>Rápido, simples<br>e seguro.</h3><p>Ao clicar em Gerar PIX, criamos um QR Code exclusivo no valor que você escolheu.</p><ol class="pix-steps"><li>Escolha o valor e informe seu CPF.</li><li>Leia o QR Code ou use o PIX copia e cola no app do seu banco.</li><li>Pronto! A confirmação aparece aqui na página.</li></ol><div class="pix-footer">Pagamento processado pela MasterFy. Sua contribuição é muito importante. Obrigado por ajudar! 💚</div></div>
-      </div>
-    </section>
 
     <section class="updates wrap section" id="transparencia">
-      <div class="section-tag">05 — TRANSPARÊNCIA</div><div class="updates-grid"><div><h2>Informação clara<br>e apoio de verdade.</h2><p>Esta área pode receber atualizações da família sobre a campanha, os próximos passos e a destinação dos valores arrecadados.</p></div><div class="update-list"><article><span>01</span><div><strong>Atualizações da campanha</strong><p>Espaço reservado para comunicados oficiais da família.</p></div></article><article><span>02</span><div><strong>Prestação de informações</strong><p>Os detalhes e comprovantes poderão ser publicados aqui conforme forem disponibilizados.</p></div></article><article><span>03</span><div><strong>Obrigado por compartilhar</strong><p>Compartilhar a campanha também é uma forma importante de ajudar.</p></div></article></div></div>
+      <div class="section-tag">04 — TRANSPARÊNCIA</div><div class="updates-grid"><div><h2>Informação clara<br>e apoio de verdade.</h2><p>Esta área pode receber atualizações da família sobre a campanha, os próximos passos e a destinação dos valores arrecadados.</p></div><div class="update-list"><article><span>01</span><div><strong>Atualizações da campanha</strong><p>Espaço reservado para comunicados oficiais da família.</p></div></article><article><span>02</span><div><strong>Prestação de informações</strong><p>Os detalhes e comprovantes poderão ser publicados aqui conforme forem disponibilizados.</p></div></article><article><span>03</span><div><strong>Obrigado por compartilhar</strong><p>Compartilhar a campanha também é uma forma importante de ajudar.</p></div></article></div></div>
     </section>
 
-    <section class="supporters"><div class="wrap supporters-inner"><div><div class="section-tag">06 — CORRENTE DO BEM</div><h2>Todo apoio conta.</h2><p>Obrigado a cada pessoa que contribui, compartilha e envia boas energias ao Kauê e à família.</p></div><div class="supporter-mark">♡<small>JUNTOS SOMOS MAIS FORTES</small></div></div></section>
+    <section class="supporters"><div class="wrap supporters-inner"><div><div class="section-tag">05 — CORRENTE DO BEM</div><h2>Todo apoio conta.</h2><p>Obrigado a cada pessoa que contribui, compartilha e envia boas energias ao Kauê e à família.</p></div><div class="supporters-cta"><a class="button button-big" href="#doar"><span class="pix-badge">PIX</span> Quero doar agora <span>→</span></a><small>JUNTOS SOMOS MAIS FORTES 💚</small></div></div></section>
   </main>
-  <footer><div class="wrap footer-inner"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">♡</span><span>Histórias Únicas</span></a><span>Uma campanha de solidariedade feita com carinho.</span><a href="#inicio">Voltar ao topo ↑</a></div><div class="wrap footer-bottom">© <span id="year"></span> Histórias Únicas · Ajude o Kauê. Criado em outubro de 2026.</div></footer>
+  <footer><div class="wrap footer-inner"><a class="brand footer-brand" href="#inicio"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="40"><span>Histórias Únicas</span></a><span>Uma campanha de solidariedade feita com carinho.</span><a href="#inicio">Voltar ao topo ↑</a></div><div class="wrap footer-bottom">© <span id="year"></span> Histórias Únicas · Ajude o Kauê. Criado em outubro de 2026.</div></footer>
+
+  <div class="donate-bar" id="donateBar"><div class="db-info"><strong data-raised>R$ 0</strong><span data-percent>0% alcançado</span></div><a class="button" href="#doar"><span class="pix-badge">PIX</span> Doar agora</a></div>
 
   <div class="modal" id="pixModal" aria-hidden="true"><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="pixTitle"><button class="modal-close" id="closeModal" aria-label="Fechar">×</button>
+    <div class="pix-video-wrap" id="pixVideoWrap" hidden><video class="pix-video" id="pixVideo" loop playsinline preload="none"></video><button class="sound-btn pix-sound" id="pixSoundBtn" type="button" hidden>🔊 Ativar som</button></div>
     <div class="pix-state" data-state="loading"><div class="spinner" aria-hidden="true"></div><h3>Gerando seu PIX…</h3></div>
-    <div class="pix-state" data-state="pending"><h3 id="pixTitle">Doação de <span id="pixAmount"></span></h3><p>Leia o QR Code no app do seu banco ou copie o código abaixo.</p><img class="pix-qr" id="pixQr" alt="QR Code PIX"><div class="pix-code"><code id="pixCode"></code><button class="button" id="copyPix" type="button">Copiar código PIX</button></div><p class="pix-waiting"><span class="spinner spinner-small" aria-hidden="true"></span> Aguardando pagamento…</p></div>
-    <div class="pix-state" data-state="paid"><div class="modal-heart">♥</div><h3>Pagamento confirmado!</h3><p>Muito obrigado por ajudar o Kauê. Sua doação faz toda a diferença. 💚</p><button class="button modal-ok" type="button">Fechar</button></div>
+    <div class="pix-state" data-state="pending">
+      <p class="pix-kicker">FALTA SÓ UM PASSO 💚</p>
+      <h3 id="pixTitle">Sua doação de <span id="pixAmount"></span> está quase lá!</h3>
+      <p class="pix-urge"><strong>O Kauê não pode esperar.</strong> Conclua seu PIX agora e faça parte dessa corrente do bem.</p>
+      <div class="pix-pay">
+        <div class="pix-qr-wrap"><img class="pix-qr" id="pixQr" alt="QR Code PIX"><small>Abra o app do seu banco e leia o QR Code</small></div>
+        <div class="pix-code"><button class="button button-copy" id="copyPix" type="button">Copiar código PIX</button><p class="copy-hint" id="copyHint">Depois, abra o app do seu banco e cole em <strong>PIX copia e cola</strong>.</p><code id="pixCode"></code></div>
+      </div>
+      <p class="pix-waiting"><span class="spinner spinner-small" aria-hidden="true"></span> Aguardando seu pagamento. Não feche esta página.</p>
+      <p class="pix-heart">♥ Cada PIX aproxima o Kauê da meta. Obrigado por estar com ele nessa caminhada!</p>
+    </div>
+    <div class="pix-state" data-state="paid">
+      <img class="thanks-photo" src="assets/kaue-capa.jpg" alt="Kauê">
+      <p class="pix-kicker">DOAÇÃO CONFIRMADA</p>
+      <h3>Muito obrigado! 💚</h3>
+      <p class="thanks-text"><strong>O Kauê e toda a família agradecem de coração</strong> pelo seu carinho. Cada doação é um abraço que chega até eles e dá forças para continuar.</p>
+      <p class="thanks-ask">Ajude mais um pouquinho: envie esta campanha para quem também pode ajudar.</p>
+      <a class="button button-whats" id="shareWhats" href="#" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>
+      <button class="text-link modal-ok thanks-close" type="button">Fechar</button>
+    </div>
     <div class="pix-state" data-state="error"><div class="modal-heart">♡</div><h3>Ops, algo deu errado</h3><p id="pixErrorMsg"></p><button class="button modal-ok" type="button">Fechar</button></div>
   </div></div>
   <div class="lightbox" id="lightbox"><button id="lightboxClose" aria-label="Fechar">×</button><img id="lightboxImage" alt="Foto do Kauê"></div>
