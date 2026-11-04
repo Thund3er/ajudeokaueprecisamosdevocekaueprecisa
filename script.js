@@ -13,7 +13,9 @@ amountInput.addEventListener("input",()=>selectAmount(amountInput.value,true));
 document.querySelectorAll("[data-preset]").forEach(a=>a.addEventListener("click",()=>selectAmount(a.dataset.preset)));
 selectAmount(selected);
 const modal=document.getElementById("pixModal"),copy=document.getElementById("copyPix"),form=document.getElementById("donorForm"),formError=document.getElementById("formError"),cpfInput=document.getElementById("donorCpf");
-let pixCode="",pixTimer=null,pixDeadline=0;
+let pixCode="",pixTimer=null,pixDeadline=0,pixValor=0;
+// Meta Pixel: avisa a doação confirmada (Purchase) com o valor, para os anúncios otimizarem por quem doa.
+function trackPurchase(valor){if(typeof fbq==="function"&&valor>0)fbq("track","Purchase",{value:valor,currency:"BRL"})}
 // Vídeo da janela do QR Code. Começa com som no clique em "Gerar PIX" (o clique libera o som no navegador);
 // se o navegador bloquear, toca sem som e mostra o botão "Ativar som".
 const pixVideo=document.getElementById("pixVideo"),pixVideoWrap=document.getElementById("pixVideoWrap"),pixSoundBtn=document.getElementById("pixSoundBtn");let heroWasPlaying=false;
@@ -30,7 +32,7 @@ copy.addEventListener("click",async()=>{if(!pixCode)return;try{await navigator.c
 document.getElementById("shareWhats").href="https://wa.me/?text="+encodeURIComponent("Acabei de doar para ajudar o Kauê 💚 Ele precisa da nossa ajuda. Doe qualquer valor via PIX: "+location.origin+"/");
 cpfInput.addEventListener("input",()=>{const d=cpfInput.value.replace(/\D/g,"").slice(0,11);cpfInput.value=d.replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})\.(\d{3})(\d)/,"$1.$2.$3").replace(/(\d{3})-?(\d{1,2})$/,"$1-$2")});
 // A MasterFy avisa o pagamento por webhook; aqui só consultamos o status gravado no nosso servidor.
-function checkStatus(id){if(Date.now()>pixDeadline||!modal.classList.contains("open"))return;fetch("/api/pix/"+encodeURIComponent(id)).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.status==="PAID"){showState("paid");updateRaised()}else pixTimer=setTimeout(()=>checkStatus(id),5000)}).catch(()=>{pixTimer=setTimeout(()=>checkStatus(id),5000)})}
+function checkStatus(id){if(Date.now()>pixDeadline||!modal.classList.contains("open"))return;fetch("/api/pix/"+encodeURIComponent(id)).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.status==="PAID"){trackPurchase(pixValor);pixValor=0;showState("paid");updateRaised()}else pixTimer=setTimeout(()=>checkStatus(id),5000)}).catch(()=>{pixTimer=setTimeout(()=>checkStatus(id),5000)})}
 form.addEventListener("submit",async e=>{e.preventDefault();formError.textContent="";
   const valor=Number(document.getElementById("customAmount").value)||selected,cpf=cpfInput.value;
   if(!(valor>0))return formError.textContent="Escolha ou digite o valor da doação.";
@@ -39,7 +41,7 @@ form.addEventListener("submit",async e=>{e.preventDefault();formError.textConten
   const btn=document.getElementById("donateButton");btn.disabled=true;openModal("loading");startPixVideo();
   try{const r=await fetch("/api/pix",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({valor,cpf})});const d=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(d.erro||"Não foi possível gerar o PIX agora. Tente novamente em alguns minutos.");
-    pixCode=d.copiaECola;copyHint.classList.remove("done");copyHint.innerHTML="Depois, abra o app do seu banco e cole em <strong>PIX copia e cola</strong>.";document.getElementById("pixCode").textContent=pixCode;document.getElementById("pixQr").src=d.qrCode;document.getElementById("pixAmount").textContent=d.valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+    pixCode=d.copiaECola;pixValor=Number(d.valor)||0;copyHint.classList.remove("done");copyHint.innerHTML="Depois, abra o app do seu banco e cole em <strong>PIX copia e cola</strong>.";document.getElementById("pixCode").textContent=pixCode;document.getElementById("pixQr").src=d.qrCode;document.getElementById("pixAmount").textContent=d.valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
     showState("pending");pixDeadline=Date.now()+30*60*1000;clearTimeout(pixTimer);pixTimer=setTimeout(()=>checkStatus(d.id),5000)}
   catch(err){document.getElementById("pixErrorMsg").textContent=err.message;showState("error")}
   finally{btn.disabled=false}});
